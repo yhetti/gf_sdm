@@ -28,13 +28,13 @@ $EndComp
 $Comp
 L power:VBUS #PWR?
 U 1 1 5D005163
-P 2450 950
-F 0 "#PWR?" H 2450 800 50  0001 C CNN
-F 1 "VBUS" H 2465 1123 50  0000 C CNN
-F 2 "" H 2450 950 50  0001 C CNN
-F 3 "" H 2450 950 50  0001 C CNN
-	1    2450 950 
-	1    0    0    -1  
+P 1450 2650
+F 0 "#PWR?" H 1450 2500 50  0001 C CNN
+F 1 "VBUS" H 1465 2823 50  0000 C CNN
+F 2 "" H 1450 2650 50  0001 C CNN
+F 3 "" H 1450 2650 50  0001 C CNN
+	1    1450 2650
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:VBUS #PWR?
@@ -48,19 +48,13 @@ F 3 "" H 2650 950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2450 1150 2450 950 
-Wire Wire Line
 	2650 1150 2650 950 
 Wire Wire Line
-	3050 2350 3550 2350
-Wire Wire Line
-	2050 2550 1450 2550
+	3050 2350 3250 2350
 Wire Wire Line
 	2050 2350 1450 2350
 Text Notes 750  2300 0    50   ~ 0
 Connect pin 15 to pin 2\non the other chip.
-Text Notes 700  2550 0    50   ~ 0
-Connect pin 9 to other chip.\n(Or VBUS?)
 Text Notes 2800 900  0    50   ~ 0
 VBUS = 5V
 Text Notes 3250 2550 0    50   ~ 0
@@ -186,24 +180,11 @@ control
 Text Notes 4000 1500 0    50   ~ 0
 Connect to a GPIO pin.\nDrive low.
 Text Notes 3150 3100 0    50   ~ 0
-I want a 5V drive current out of pin 14.\nThis is the current that will go to the\nUSB breakout board, And will drive the\nGreatFET.
+Configure a 5V current out of pin 14.\nThis is the current that will go to the\nUSB breakout board, and will drive the\nGreatFET.
 Text Notes 2200 5550 0    50   ~ 0
 GreatFET
-Text Notes 5800 4700 0    50   ~ 0
+Text Notes 5550 4950 0    50   ~ 0
 USB breakout board
-$Comp
-L power:VBUS #PWR?
-U 1 1 5D02F641
-P 1450 2750
-F 0 "#PWR?" H 1450 2600 50  0001 C CNN
-F 1 "VBUS" H 1465 2923 50  0000 C CNN
-F 2 "" H 1450 2750 50  0001 C CNN
-F 3 "" H 1450 2750 50  0001 C CNN
-	1    1450 2750
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	1450 2550 1450 2750
 Wire Wire Line
 	2100 4550 2100 4900
 Wire Wire Line
@@ -217,12 +198,6 @@ Wire Wire Line
 Wire Wire Line
 	3400 4900 2700 4900
 Wire Wire Line
-	2700 4900 2700 4550
-Wire Wire Line
-	5950 4000 5950 4400
-Wire Wire Line
-	5950 4400 5200 4400
-Wire Wire Line
 	5200 4400 5200 5100
 Wire Wire Line
 	5200 5100 7150 5100
@@ -230,8 +205,6 @@ Wire Wire Line
 	7150 5100 7150 4400
 Wire Wire Line
 	7150 4400 6350 4400
-Wire Wire Line
-	6350 4400 6350 4000
 $Comp
 L power:VBUS #PWR?
 U 1 1 5D041A3F
@@ -243,14 +216,105 @@ F 3 "" H 2100 4550 50  0001 C CNN
 	1    2100 4550
 	1    0    0    -1  
 $EndComp
-Text Label 6350 4000 3    50   ~ 0
+Text Label 6250 4000 3    50   ~ 0
 pin_14
 Text Label 3550 2350 2    50   ~ 0
 pin_14
+Text Notes 7600 3950 0    50   ~ 0
+Erase 'gf_sdm.kicad-pcb' from the repo.
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 5D0AD4EB
+P 6350 4600
+F 0 "J?" V 6268 4680 50  0001 L CNN
+F 1 "Conn_01x02" V 6313 4680 50  0001 L CNN
+F 2 "" H 6350 4600 50  0001 C CNN
+F 3 "~" H 6350 4600 50  0001 C CNN
+	1    6350 4600
+	0    1    1    0   
+$EndComp
+Connection ~ 6350 4400
 Wire Wire Line
-	2700 4550 4050 4550
+	6350 4000 6350 4300
 Wire Wire Line
-	4050 4550 4050 4000
+	5200 4400 6250 4400
 Wire Wire Line
-	4050 4000 5950 4000
+	6250 4400 6250 4300
+Connection ~ 6250 4400
+$Comp
+L Device:R R?
+U 1 1 5D382D92
+P 3250 2000
+F 0 "R?" H 3320 2046 50  0000 L CNN
+F 1 "1k" H 3320 1955 50  0000 L CNN
+F 2 "" V 3180 2000 50  0001 C CNN
+F 3 "~" H 3250 2000 50  0001 C CNN
+	1    3250 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D?
+U 1 1 5D3833A6
+P 3450 1600
+F 0 "D?" V 3397 1678 50  0000 L CNN
+F 1 "LED" V 3488 1678 50  0000 L CNN
+F 2 "" H 3450 1600 50  0001 C CNN
+F 3 "~" H 3450 1600 50  0001 C CNN
+	1    3450 1600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3250 2350 3250 2150
+Connection ~ 3250 2350
+Wire Wire Line
+	3250 2350 3550 2350
+Wire Wire Line
+	3250 1850 3250 1800
+Wire Wire Line
+	3250 1800 3450 1800
+Wire Wire Line
+	3450 1800 3450 1750
+$Comp
+L power:GND #PWR?
+U 1 1 5D38598D
+P 3450 1350
+F 0 "#PWR?" H 3450 1100 50  0001 C CNN
+F 1 "GND" H 3455 1177 50  0000 C CNN
+F 2 "" H 3450 1350 50  0001 C CNN
+F 3 "" H 3450 1350 50  0001 C CNN
+	1    3450 1350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3450 1450 3450 1350
+Text Label 4500 1550 0    50   ~ 0
+J1_P25
+Text Label 4550 2150 0    50   ~ 0
+J1_P21
+Text Label 6350 4000 3    50   ~ 0
+pin_16
+Wire Wire Line
+	6250 4300 2700 4300
+Connection ~ 6250 4300
+Wire Wire Line
+	6250 4300 6250 4000
+Wire Wire Line
+	2700 4300 2700 4900
+Wire Wire Line
+	6350 4300 8200 4300
+Connection ~ 6350 4300
+Wire Wire Line
+	6350 4300 6350 4400
+Text Label 8200 4300 2    50   ~ 0
+to_host
+Wire Wire Line
+	2050 2550 1450 2550
+Wire Wire Line
+	1450 2550 1450 2650
+Wire Wire Line
+	2450 1150 2450 900 
+Wire Wire Line
+	2450 900  1600 900 
+Text Label 1600 900  0    50   ~ 0
+pin_16
 $EndSCHEMATC
